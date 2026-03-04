@@ -113,13 +113,13 @@ function registerExecuteQueryTool(server, registerWithAllAliases) {
         
             // Basic validation to prevent destructive operations
             const lowerSql = sql.toLowerCase();
-            const prohibitedOperations = ['drop ', 'delete ', 'truncate ', 'update ', 'alter '];
+            const prohibitedOperations = ['drop', 'delete', 'truncate', 'update', 'alter', 'truncate', 'rename', 'insert', 'merge', 'upsert', 'grant', 'revoke', 'deny', 'create', 'writetext', 'updatetext', 'backup', 'restore', 'exec'];
             
             if (prohibitedOperations.some(op => lowerSql.includes(op))) {
                 return {
                     content: [{
                         type: "text",
-                        text: "⚠️ Error: Data modification operations (DROP, DELETE, UPDATE, TRUNCATE, ALTER) are not allowed for safety reasons."
+                        text: "⚠️ Error: Data modification operations (DROP, DELETE, UPDATE, TRUNCATE, ALTER and so on) are not allowed for safety reasons."
                     }],
                     isError: true
                 };
